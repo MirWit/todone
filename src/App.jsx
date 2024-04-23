@@ -66,7 +66,7 @@ export default function App() {
                   onClick={() => deleteTodo(todo.id)}
                   className="btn delete-btn"
                 >
-                  delete
+                  delete1
                 </button>
               </label>
             </li>
