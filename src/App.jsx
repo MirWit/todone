@@ -17,7 +17,6 @@ export default function App() {
   const [todos, setTodos] = useState(() => {
     const localValue = localStorage.getItem("TASKS");
     if (localValue == null) return [];
-
     return JSON.parse(localValue);
   });
 
@@ -26,29 +25,22 @@ export default function App() {
   }, [todos]);
 
   function addTodo(title) {
-    setTodos((currentTodos) => {
-      return [
-        ...currentTodos,
-        { id: crypto.randomUUID(), title, completed: false },
-      ];
-    });
+    setTodos((currentTodos) => [
+      ...currentTodos,
+      { id: crypto.randomUUID(), title, completed: false },
+    ]);
   }
 
   function toggleTodo(id, completed) {
-    setTodos((currentTodos) => {
-      return currentTodos.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, completed };
-        }
-        return todo;
-      });
-    });
+    setTodos((currentTodos) =>
+      currentTodos.map((todo) =>
+        todo.id === id ? { ...todo, completed } : todo
+      )
+    );
   }
 
   function deleteTodo(id) {
-    setTodos((currentTodos) => {
-      return currentTodos.filter((todo) => todo.id !== id);
-    });
+    setTodos((currentTodos) => currentTodos.filter((todo) => todo.id !== id));
   }
 
   return (
@@ -69,18 +61,12 @@ export default function App() {
                 />
               }
             />
-
             <Route
               path="/details/:id"
-              element={<TaskDetailsPage todos={todos} onUpdate={updateTask} />}
+              element={<TaskDetailsPage todos={todos} setTodos={setTodos} />}
             />
-
             <Route path="/about" element={<About />} />
             <Route path="*" element={<NotFoundPage />} />
-            <Route
-              path="/update/:id"
-              element={<UpdateTaskForm todos={todos} />}
-            />
           </Routes>
         </main>
         <Footer />

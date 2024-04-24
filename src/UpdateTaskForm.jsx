@@ -5,17 +5,9 @@ export default function UpdateTaskForm({ task, onUpdate }) {
   const [description, setDescription] = useState(task.description);
   const [completed, setCompleted] = useState(task.completed);
 
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
-  };
-
-  const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
-  };
-
-  const handleCompletedChange = (e) => {
-    setCompleted(e.target.checked);
-  };
+  const handleTitleChange = (e) => setTitle(e.target.value);
+  const handleDescriptionChange = (e) => setDescription(e.target.value);
+  const handleCompletedChange = (e) => setCompleted(e.target.checked);
 
   const handleSubmit = (e) => {
     e.preventDefault();
