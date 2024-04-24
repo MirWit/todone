@@ -4,9 +4,9 @@
 }
 
 body {
+  display: flex;
   background: #333;
   color: hsl(200, 100%, 90%);
-  max-width: 400px;
   padding: 1rem;
   margin: 0 auto;
 }

@@ -1,21 +1,37 @@
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./style.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { NewTodoForm } from "./NewTodoForm";
+import { TodoList } from "./TodoList";
+import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
+import Footer from "./Footer";
+import About from "./pages/About";
+import Home from "./pages/Home";
+import TaskDetailsPage from "./pages/TaskDetailsPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import UpdateTaskForm from "./UpdateTaskForm";
 
 export default function App() {
-  const [newTask, setNewTask] = useState("");
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
+    const localValue = localStorage.getItem("TASKS");
+    if (localValue == null) return [];
 
-  function handleSubmit(e) {
-    e.preventDefault();
+    return JSON.parse(localValue);
+  });
 
+  useEffect(() => {
+    localStorage.setItem("TASKS", JSON.stringify(todos));
+  }, [todos]);
+
+  function addTodo(title) {
     setTodos((currentTodos) => {
       return [
         ...currentTodos,
-        { id: crypto.randomUUID(), title: newTask, completed: false },
+        { id: crypto.randomUUID(), title, completed: false },
       ];
     });
-
-    setNewTask("");
   }
 
   function toggleTodo(id, completed) {
@@ -36,43 +52,39 @@ export default function App() {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="new-item-form">
-        <div className="form-row">
-          <label htmlFor="task">New Task</label>
-          <input
-            value={newTask}
-            onChange={(e) => setNewTask(e.target.value)}
-            type="text"
-            id="taks"
-          />
-        </div>
-        <button className="btn">Add</button>
-      </form>
-      <h1 className="listHeadline">My List</h1>
-      <ul className="list">
-        {todos.length === 0 && "*nothing to do*"}
-        {todos.map((todo) => {
-          return (
-            <li key={todo.id}>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={todo.completed}
-                  onChange={(e) => toggleTodo(todo.id, e.target.checked)}
+    <Router>
+      <div>
+        <Navbar className="navbar" />
+        <Sidebar className="sidebar" />
+        <main className="mainContainer">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  todos={todos}
+                  addTodo={addTodo}
+                  toggleTodo={toggleTodo}
+                  deleteTodo={deleteTodo}
                 />
-                {todo.title}
-                <button
-                  onClick={() => deleteTodo(todo.id)}
-                  className="btn delete-btn"
-                >
-                  delete1
-                </button>
-              </label>
-            </li>
-          );
-        })}
-      </ul>
-    </>
+              }
+            />
+
+            <Route
+              path="/details/:id"
+              element={<TaskDetailsPage todos={todos} onUpdate={updateTask} />}
+            />
+
+            <Route path="/about" element={<About />} />
+            <Route path="*" element={<NotFoundPage />} />
+            <Route
+              path="/update/:id"
+              element={<UpdateTaskForm todos={todos} />}
+            />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
