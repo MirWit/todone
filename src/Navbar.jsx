@@ -1,15 +1,15 @@
 import React from "react";
-import logo from "./images/egg-stego.jpg";
+import logo from "./images/egg2.png";
 
 export default function Navbar() {
   return (
-    <nav style={{ display: "flex", alignItems: "center" }}>
+    <nav className="navbar" style={{ display: "flex", alignItems: "center" }}>
       <img
         src={logo}
         alt="Logo"
-        style={{ height: "30px", marginRight: "10px" }}
+        style={{ height: "35px", marginRight: "10px" }}
       />
-      <h1 style={{ margin: "0" }}>to-done</h1>
+      <h2 style={{ margin: "0" }}>TO-DONE</h2>
     </nav>
   );
 }

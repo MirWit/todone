@@ -1,4 +1,5 @@
 import { TodoItem } from "./TodoItem";
+import happyImage from "./images/happy.jpg";
 
 export function TodoList({ todos, toggleTodo, deleteTodo }) {
   return (

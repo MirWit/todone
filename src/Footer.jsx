@@ -8,7 +8,7 @@ export default function Footer() {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <p>go to github repo</p>
+        <p className="footer-text">go to github repo</p>
       </a>
     </footer>
   );

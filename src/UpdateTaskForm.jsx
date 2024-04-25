@@ -15,24 +15,37 @@ export default function UpdateTaskForm({ task, onUpdate }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Title:
-        <input type="text" value={title} onChange={handleTitleChange} />
-      </label>
-      <label>
-        Description:
-        <textarea value={description} onChange={handleDescriptionChange} />
-      </label>
-      <label>
-        Completed:
-        <input
-          type="checkbox"
-          checked={completed}
-          onChange={handleCompletedChange}
-        />
-      </label>
-      <button type="submit">Update Task</button>
+    <form className="update-form" onSubmit={handleSubmit}>
+      <div className="div-update">
+        <div className="div-update-left">
+          <label>
+            Title:
+            <input
+              className="update-title-field"
+              type="text"
+              value={title}
+              onChange={handleTitleChange}
+            />
+          </label>
+          <label>
+            Completed:
+            <input
+              type="checkbox"
+              checked={completed}
+              onChange={handleCompletedChange}
+            />
+          </label>
+        </div>
+        <div className="div-update-right">
+          <label>
+            Description:
+            <textarea value={description} onChange={handleDescriptionChange} />
+          </label>
+        </div>
+      </div>
+      <button className="update-button btn" type="submit">
+        Update Task
+      </button>
     </form>
   );
 }

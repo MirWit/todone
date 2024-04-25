@@ -24,9 +24,8 @@ export default function TaskDetailsPage({ todos, setTodos }) {
   }
 
   return (
-    <div>
-      <h1>Task Details</h1>
-      <p>{task.title}</p>
+    <div className="update-div">
+      <h1>{task.title}</h1>
       <UpdateTaskForm task={task} onUpdate={updateTask} />
     </div>
   );
