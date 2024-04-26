@@ -21,7 +21,7 @@ export function NewTodoForm(props) {
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
           type="text"
-          id="taks"
+          id="task"
         />
       </div>
       <button className="btn">Add</button>
