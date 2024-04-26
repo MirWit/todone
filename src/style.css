@@ -230,15 +230,15 @@ footer {
 }
 
 .update-form label {
-  display: block; /* Set labels to display as block-level elements */
-  margin: 10px 0; /* Add some spacing between each label */
+  display: block;
+  margin: 10px 0;
 }
 
 .update-form input,
 .update-form textarea,
 .update-form button {
-  display: block; /* Set input fields and button to display as block-level elements */
-  margin-bottom: 20px; /* Add some spacing between each input field and button */
+  display: block;
+  margin-bottom: 20px;
 }
 
 .div-update {
@@ -253,7 +253,7 @@ footer {
 .div-update-left,
 .div-update-right {
   width: 100%;
-  align-self: flex-start; /* Align both divs at the start of the flex container */
+  align-self: flex-start;
 }
 
 .div-update-right {
@@ -296,7 +296,7 @@ footer {
 }
 
 .div-update-right {
-  margin-top: 10px; /* Add some margin between div-update-left and div-update-right */
+  margin-top: 10px;
 }
 
 .div-update-right textarea {
